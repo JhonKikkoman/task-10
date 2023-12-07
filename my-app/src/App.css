@@ -1,0 +1,37 @@
+/** @format */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container__form {
+  display: flex;
+  gap: 1px;
+  margin: 5px;
+}
+
+.btn {
+  padding: 10px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.list__item {
+  display: flex;
+  font-size: 30px;
+}
+
+.item__btn {
+  font-weight: 600;
+}
+
+.item__btn:hover {
+  cursor: pointer;
+}
+
+.item__btn.btn-close {
+  width: 40px;
+  font-size: 20px;
+}
