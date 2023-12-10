@@ -33,6 +33,10 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
     if (Number.isNaN(parseInt(state.numberValue))) {
       throw new Error(`Ошибка: ${state.numberValue} не является числом`);
     }
+    dispatch({
+      type: SET_USER_INPUT,
+      payload: { state },
+    });
     propClbk(state);
     setState({
       textValue: '',
@@ -46,14 +50,6 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
     const { name, value } = target;
     const textField = name === 'text_field' ? value : state.textValue;
     const numberField = name === 'number_field' ? value : state.numberValue;
-    dispatch({
-      type: SET_USER_INPUT,
-      payload: {
-        textValue: textField,
-        numberValue: numberField,
-        id: `${textField}_${numberField}`,
-      },
-    });
     setState({
       textValue: textField,
       numberValue: numberField,
