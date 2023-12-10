@@ -5,6 +5,7 @@ export type stateU = {
   textValue: string;
   numberValue: number | string;
   id: string;
+  boo?: boolean;
 };
 
 export type stateResT = {
@@ -29,7 +30,7 @@ export type stateInputT = {
 
 export type propInputT = {
   propClbk: (arg: stateInputT) => void;
-  propEditObj?: stateResT;
+  propEditObj: stateResT;
 };
 
 // <--------------ResultWidgetTypes--------------->

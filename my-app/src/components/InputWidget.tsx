@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { propInputT, stateInputT, targetT } from './models';
+import { useSelector, connect } from 'react-redux';
 
 export function InputWidget({ propClbk, propEditObj }: propInputT) {
   const [state, setState] = useState<stateInputT>({
@@ -9,6 +10,10 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
     numberValue: '',
     id: '',
   });
+
+  const items = useSelector((state: any) => state.input);
+  // console.log(items);
+
   useEffect(() => {
     if (propEditObj !== undefined) {
       setState(propEditObj);
@@ -33,15 +38,13 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
       numberValue: '',
       id: '',
     });
-    if (propEditObj !== undefined) {
-      propEditObj.boo = false;
-    }
+    propEditObj.boo = false;
   };
 
   const handlerChange = ({ target }: targetT) => {
     const { name, value } = target;
-    let textField = name === 'text_field' ? value : state.textValue;
-    let numberField = name === 'number_field' ? value : state.numberValue;
+    const textField = name === 'text_field' ? value : state.textValue;
+    const numberField = name === 'number_field' ? value : state.numberValue;
     setState({
       textValue: textField,
       numberValue: numberField,
@@ -50,14 +53,13 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
   };
 
   const handlerCancel = () => {
-    if (state.textValue && state.numberValue !== '') {
-      propClbk(state);
-      setState({
-        textValue: '',
-        numberValue: '',
-        id: '',
-      });
-    }
+    propEditObj.boo = false;
+    propClbk(propEditObj);
+    setState({
+      textValue: '',
+      numberValue: '',
+      id: '',
+    });
   };
 
   return (
