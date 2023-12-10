@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { propInputT, stateInputT, targetT } from './models';
-import { useSelector, connect } from 'react-redux';
+import { useSelector, useDispatch, connect } from 'react-redux';
+import { SET_USER_INPUT } from './store/action';
 
 export function InputWidget({ propClbk, propEditObj }: propInputT) {
   const [state, setState] = useState<stateInputT>({
@@ -10,10 +11,11 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
     numberValue: '',
     id: '',
   });
-
-  const items = useSelector((state: any) => state.input);
-  // console.log(items);
-
+  const dispatch = useDispatch();
+  const { textValue, numberValue, id } = useSelector(
+    (state: any) => state.input
+  );
+  console.log(textValue, numberValue);
   useEffect(() => {
     if (propEditObj !== undefined) {
       setState(propEditObj);
@@ -45,6 +47,14 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
     const { name, value } = target;
     const textField = name === 'text_field' ? value : state.textValue;
     const numberField = name === 'number_field' ? value : state.numberValue;
+    dispatch({
+      type: SET_USER_INPUT,
+      payload: {
+        textValue: textField,
+        numberValue: numberField,
+        id: `${textField}_${numberField}`,
+      },
+    });
     setState({
       textValue: textField,
       numberValue: numberField,
