@@ -15,7 +15,6 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
   const { textValue, numberValue, id } = useSelector(
     (state: any) => state.input
   );
-  console.log(textValue, numberValue);
   useEffect(() => {
     if (propEditObj !== undefined) {
       setState(propEditObj);

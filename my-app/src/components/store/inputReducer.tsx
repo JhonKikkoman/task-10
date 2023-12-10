@@ -8,6 +8,7 @@ export const inputReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_USER_INPUT:
       const item = action.payload;
+      console.log(item);
       return { ...state, item };
     default:
       return state;
