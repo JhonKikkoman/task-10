@@ -18,7 +18,10 @@ const initialState: initT = {
   arrUsersValue: [],
 };
 
-export const inputReducer = (state = initialState, action: any) => {
+export const inputReducer = (
+  state = initialState,
+  action: { type: string; payload: any }
+) => {
   switch (action.type) {
     case SET_USER_INPUT_OBJ:
       const obj = action.payload;
