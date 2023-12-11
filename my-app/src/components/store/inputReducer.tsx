@@ -1,7 +1,7 @@
 /** @format */
 
 import { stateInputT } from '../models';
-import { SET_USER_INPUT_OBJ, PUSH_OBJ_IN_ARR } from './action';
+import { SET_USER_INPUT_OBJ, PUSH_OBJ_IN_ARR, SET_EDIT } from './action';
 
 type initT = {
   currentValue: {
@@ -35,6 +35,8 @@ export const inputReducer = (state = initialState, action: any) => {
         ...state,
         arrUsersValue: [...arr],
       };
+    case SET_EDIT:
+      return;
     default:
       return state;
   }
