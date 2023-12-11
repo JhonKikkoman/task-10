@@ -1,8 +1,12 @@
 /** @format */
 
+import { useSelector } from 'react-redux';
 import { propT } from './models';
 
 export function ResultWidget({ propArr, ClbkResult }: propT) {
+  const item = useSelector((state: any) => state.input);
+  console.log(item);
+
   return (
     <ul className='container__list'>
       {propArr.map((e) => {

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { propInputT, stateInputT, targetT } from './models';
 import { useSelector, useDispatch, connect } from 'react-redux';
-import { SET_USER_INPUT } from './store/action';
+import { SET_USER_INPUT_OBJ, PUSH_OBJ_IN_ARR } from './store/action';
 
 export function InputWidget({ propClbk, propEditObj }: propInputT) {
   const [state, setState] = useState<stateInputT>({
@@ -12,9 +12,8 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
     id: '',
   });
   const dispatch = useDispatch();
-  const { textValue, numberValue, id } = useSelector(
-    (state: any) => state.input
-  );
+  let { userValue } = useSelector((state: any) => state.input);
+
   useEffect(() => {
     if (propEditObj !== undefined) {
       setState(propEditObj);
@@ -34,8 +33,8 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
       throw new Error(`Ошибка: ${state.numberValue} не является числом`);
     }
     dispatch({
-      type: SET_USER_INPUT,
-      payload: { state },
+      type: PUSH_OBJ_IN_ARR,
+      payload: { ...userValue },
     });
     propClbk(state);
     setState({
@@ -50,6 +49,14 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
     const { name, value } = target;
     const textField = name === 'text_field' ? value : state.textValue;
     const numberField = name === 'number_field' ? value : state.numberValue;
+    dispatch({
+      type: SET_USER_INPUT_OBJ,
+      payload: {
+        textValue: textField,
+        numberValue: numberField,
+        id: `${textField}_${numberField}`,
+      },
+    });
     setState({
       textValue: textField,
       numberValue: numberField,
