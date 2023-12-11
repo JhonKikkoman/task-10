@@ -2,11 +2,11 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 import { propT, stateInputT } from './models';
+import { SET_EDIT } from './store/action';
 
 export function ResultWidget({ propArr, ClbkResult }: propT) {
   const { arrUsersValue } = useSelector((state: any) => state.input);
   const dispatch = useDispatch();
-  console.log(arrUsersValue);
 
   return (
     <ul className='container__list'>
@@ -18,7 +18,12 @@ export function ResultWidget({ propArr, ClbkResult }: propT) {
             <button
               type='button'
               className='item item__btn'
-              onClick={() => ClbkResult(e)}
+              onClick={() => {
+                dispatch({
+                  type: SET_EDIT,
+                  payload: e.id,
+                });
+              }}
             >
               Редактировать
             </button>

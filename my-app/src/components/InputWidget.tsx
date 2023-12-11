@@ -2,8 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { propInputT, stateInputT, targetT } from './models';
-import { useSelector, useDispatch, connect } from 'react-redux';
-import { SET_USER_INPUT_OBJ, PUSH_OBJ_IN_ARR } from './store/action';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  SET_USER_INPUT_OBJ,
+  PUSH_OBJ_IN_ARR,
+  CLEAR_FIELDS,
+} from './store/action';
 
 export function InputWidget({ propClbk, propEditObj }: propInputT) {
   const [state, setState] = useState<stateInputT>({
@@ -11,8 +15,9 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
     numberValue: '',
     id: '',
   });
+
   const dispatch = useDispatch();
-  let { userValue } = useSelector((state: any) => state.input);
+  const { userValue, currentValue } = useSelector((state: any) => state.input);
 
   useEffect(() => {
     if (propEditObj !== undefined) {
@@ -29,12 +34,15 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
 
   const handlerSubmit = (e: any) => {
     e.preventDefault();
-    if (Number.isNaN(parseInt(state.numberValue))) {
-      throw new Error(`Ошибка: ${state.numberValue} не является числом`);
+    if (Number.isNaN(parseInt(currentValue.numberValue))) {
+      throw new Error(`Ошибка: ${currentValue.numberValue} не является числом`);
     }
     dispatch({
       type: PUSH_OBJ_IN_ARR,
       payload: { ...userValue },
+    });
+    dispatch({
+      type: CLEAR_FIELDS,
     });
     propClbk(state);
     setState({
@@ -79,14 +87,14 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
       <input
         type='text'
         name='text_field'
-        value={state.textValue}
+        value={currentValue.textValue}
         className='btn item__text-field'
         onChange={handlerChange}
       />
       <input
         type='text'
         name='number_field'
-        value={state.numberValue}
+        value={currentValue.numberValue}
         className='btn item__number-field'
         onChange={handlerChange}
       />

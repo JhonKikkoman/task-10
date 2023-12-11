@@ -38,3 +38,15 @@ export type propT = {
   propArr: stateU[];
   ClbkResult: (arg: stateU) => void;
 };
+
+//<---------------ReducersType------------------>
+
+export type initT = {
+  currentValue: {
+    textValue: string;
+    numberValue: string;
+    id: string;
+  };
+  userValue: {};
+  arrUsersValue: stateInputT[];
+};
