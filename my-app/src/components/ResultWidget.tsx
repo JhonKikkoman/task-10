@@ -1,11 +1,13 @@
 /** @format */
 
 import { useSelector, useDispatch } from 'react-redux';
-import { propT, stateInputT } from './models';
+import { initT, propT, stateInputT } from './models';
 import { SET_DELETE, SET_EDIT } from './store/action';
 
 export function ResultWidget({ propArr, ClbkResult }: propT) {
-  const { arrUsersValue } = useSelector((state: any) => state.input);
+  const { arrUsersValue } = useSelector(
+    (state: { input: initT }) => state.input
+  );
   const dispatch = useDispatch();
 
   return (
