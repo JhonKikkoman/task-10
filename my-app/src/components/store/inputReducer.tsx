@@ -1,12 +1,7 @@
 /** @format */
 
 import { initT } from '../models';
-import {
-  SET_USER_INPUT_OBJ,
-  PUSH_OBJ_IN_ARR,
-  SET_EDIT,
-  SET_CANCEL,
-} from './action';
+import { SET_USER_INPUT_OBJ, SUBMIT_OR_CANCEL, SET_EDIT } from './action';
 
 const initialState: initT = {
   inputValue: {
@@ -37,7 +32,7 @@ export const inputReducer = (
         },
         userValue: obj,
       };
-    case PUSH_OBJ_IN_ARR:
+    case SUBMIT_OR_CANCEL:
       const arr = state.arrUsersValue;
       arr.push(action.payload);
       return {
@@ -45,6 +40,12 @@ export const inputReducer = (
         inputValue: {
           textValue: '',
           numberValue: '',
+        },
+        userValue: {
+          textValue: '',
+          numberValue: '',
+          id: '',
+          boo: false,
         },
         arrUsersValue: [...arr],
       };
@@ -68,20 +69,6 @@ export const inputReducer = (
           boo: true,
         },
         arrUsersValue: newUsersArr,
-      };
-    case SET_CANCEL:
-      return {
-        ...state,
-        inputValue: {
-          textValue: '',
-          numberValue: '',
-        },
-        userValue: {
-          textValue: '',
-          numberValue: '',
-          id: '',
-          boo: false,
-        },
       };
     default:
       return state;

@@ -3,11 +3,7 @@
 import { useEffect, useState } from 'react';
 import { propInputT, stateInputT, targetT } from './models';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  SET_USER_INPUT_OBJ,
-  PUSH_OBJ_IN_ARR,
-  SET_CANCEL,
-} from './store/action';
+import { SET_USER_INPUT_OBJ, SUBMIT_OR_CANCEL } from './store/action';
 
 export function InputWidget({ propClbk, propEditObj }: propInputT) {
   const [state, setState] = useState<stateInputT>({
@@ -18,7 +14,7 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
 
   const dispatch = useDispatch();
   const { userValue, inputValue } = useSelector((state: any) => state.input);
-  console.log(userValue);
+
   useEffect(() => {
     if (propEditObj !== undefined) {
       setState(propEditObj);
@@ -38,7 +34,7 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
       throw new Error(`Ошибка: ${inputValue.numberValue} не является числом`);
     }
     dispatch({
-      type: PUSH_OBJ_IN_ARR,
+      type: SUBMIT_OR_CANCEL,
       payload: { ...userValue },
     });
     propClbk(state);
@@ -71,10 +67,9 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
 
   const handlerCancel = () => {
     dispatch({
-      type: PUSH_OBJ_IN_ARR,
+      type: SUBMIT_OR_CANCEL,
       payload: { ...userValue },
     });
-    dispatch({ type: SET_CANCEL });
     propEditObj.boo = false;
     propClbk(propEditObj);
     setState({
