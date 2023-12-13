@@ -1,7 +1,12 @@
 /** @format */
 
 import { initT, payloadT } from '../models';
-import { SET_USER_INPUT_OBJ, SUBMIT_OR_CANCEL, SET_EDIT } from './action';
+import {
+  SET_USER_INPUT_OBJ,
+  SUBMIT_OR_CANCEL,
+  SET_EDIT,
+  SET_DELETE,
+} from './action';
 
 const initialState: initT = {
   inputValue: {
@@ -62,6 +67,11 @@ export const inputReducer = (
         isActive: true,
         arrUsersValue: newUsersArr,
       };
+    case SET_DELETE:
+      const deletedElemArr = state.arrUsersValue.filter(
+        (e) => e.id !== action.payload.id
+      );
+      return { ...state, arrUsersValue: deletedElemArr };
     default:
       return state;
   }

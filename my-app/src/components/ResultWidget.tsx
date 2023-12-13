@@ -2,7 +2,7 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 import { propT, stateInputT } from './models';
-import { SET_EDIT } from './store/action';
+import { SET_DELETE, SET_EDIT } from './store/action';
 
 export function ResultWidget({ propArr, ClbkResult }: propT) {
   const { arrUsersValue } = useSelector((state: any) => state.input);
@@ -30,7 +30,7 @@ export function ResultWidget({ propArr, ClbkResult }: propT) {
             <button
               type='button'
               className='item item__btn btn-close'
-              onClick={() => console.log('jello')}
+              onClick={() => dispatch({ type: SET_DELETE, payload: e })}
             >
               X
             </button>
