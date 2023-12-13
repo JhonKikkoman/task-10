@@ -73,11 +73,6 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
   const handlerCancel = () => {
     dispatch({
       type: SET_CANCEL,
-      // payload: {
-      //   textValue: inputValue.textValue,
-      //   numberValue: inputValue.numberValue,
-      //   id: `${inputValue.textValue}_${inputValue.numberValue}`,
-      // },
     });
     propEditObj.boo = false;
     propClbk(propEditObj);
