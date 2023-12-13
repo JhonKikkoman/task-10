@@ -49,11 +49,13 @@ export type initT = {
     id: string;
     boo: boolean;
   };
-  // userValue: {
-  //   textValue: string;
-  //   numberValue: string;
-  // id: string;
-  // boo: boolean;
-  // };
   arrUsersValue: stateInputT[];
+};
+
+export type payloadT = {
+  textValue: string;
+  numberValue: string;
+  name: string;
+  id: string;
+  boo: boolean;
 };
