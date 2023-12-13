@@ -6,4 +6,4 @@ export const PUSH_OBJ_IN_ARR = 'PUSH_OBJ_IN_ARR';
 
 export const SET_EDIT = 'SET_EDIT';
 
-export const CLEAR_FIELDS = 'CLEAR_FIELDS';
+export const SET_CANCEL = 'SET_CANCEL';

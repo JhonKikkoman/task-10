@@ -42,11 +42,15 @@ export type propT = {
 //<---------------ReducersType------------------>
 
 export type initT = {
-  currentValue: {
+  inputValue: {
+    textValue: string;
+    numberValue: string;
+  };
+  userValue: {
     textValue: string;
     numberValue: string;
     id: string;
+    boo: boolean;
   };
-  userValue: {};
   arrUsersValue: stateInputT[];
 };

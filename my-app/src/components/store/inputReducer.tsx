@@ -5,16 +5,20 @@ import {
   SET_USER_INPUT_OBJ,
   PUSH_OBJ_IN_ARR,
   SET_EDIT,
-  CLEAR_FIELDS,
+  SET_CANCEL,
 } from './action';
 
 const initialState: initT = {
-  currentValue: {
+  inputValue: {
+    textValue: '',
+    numberValue: '',
+  },
+  userValue: {
     textValue: '',
     numberValue: '',
     id: '',
+    boo: false,
   },
-  userValue: {},
   arrUsersValue: [],
 };
 
@@ -27,26 +31,21 @@ export const inputReducer = (
       const obj = action.payload;
       return {
         ...state,
-        currentValue: {
+        inputValue: {
           textValue: obj.textValue,
           numberValue: obj.numberValue,
         },
         userValue: obj,
-      };
-    case CLEAR_FIELDS:
-      return {
-        ...state,
-        currentValue: {
-          textValue: '',
-          numberValue: '',
-          id: '',
-        },
       };
     case PUSH_OBJ_IN_ARR:
       const arr = state.arrUsersValue;
       arr.push(action.payload);
       return {
         ...state,
+        inputValue: {
+          textValue: '',
+          numberValue: '',
+        },
         arrUsersValue: [...arr],
       };
     case SET_EDIT:
@@ -58,11 +57,31 @@ export const inputReducer = (
       );
       return {
         ...state,
-        currentValue: {
+        inputValue: {
           textValue: filteredElem.textValue,
           numberValue: Number(filteredElem.numberValue),
         },
+        userValue: {
+          textValue: filteredElem.textValue,
+          numberValue: Number(filteredElem.numberValue),
+          id: `${filteredElem.textValue}_${Number(filteredElem.numberValue)}`,
+          boo: true,
+        },
         arrUsersValue: newUsersArr,
+      };
+    case SET_CANCEL:
+      return {
+        ...state,
+        inputValue: {
+          textValue: '',
+          numberValue: '',
+        },
+        userValue: {
+          textValue: '',
+          numberValue: '',
+          id: '',
+          boo: false,
+        },
       };
     default:
       return state;
