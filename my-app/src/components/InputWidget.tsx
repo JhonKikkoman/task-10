@@ -35,7 +35,11 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
     }
     dispatch({
       type: SUBMIT_OR_CANCEL,
-      payload: { ...userValue },
+      payload: {
+        textValue: inputValue.textValue,
+        numberValue: inputValue.numberValue,
+        id: `${inputValue.textValue}_${inputValue.numberValue}`,
+      },
     });
     propClbk(state);
     setState({
@@ -68,7 +72,11 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
   const handlerCancel = () => {
     dispatch({
       type: SUBMIT_OR_CANCEL,
-      payload: { ...userValue },
+      payload: {
+        textValue: inputValue.textValue,
+        numberValue: inputValue.numberValue,
+        id: `${inputValue.textValue}_${inputValue.numberValue}`,
+      },
     });
     propEditObj.boo = false;
     propClbk(propEditObj);
@@ -98,7 +106,7 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
       <button type='submit' className='btn item__submit-btn'>
         Save
       </button>
-      {userValue.boo && (
+      {inputValue.boo && (
         <>
           <button type='button' className='btn' onClick={() => handlerCancel()}>
             Cancel

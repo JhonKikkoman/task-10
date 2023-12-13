@@ -21,7 +21,7 @@ export function ResultWidget({ propArr, ClbkResult }: propT) {
               onClick={() => {
                 dispatch({
                   type: SET_EDIT,
-                  payload: e.id,
+                  payload: e,
                 });
               }}
             >

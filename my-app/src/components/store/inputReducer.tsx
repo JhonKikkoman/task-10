@@ -7,10 +7,6 @@ const initialState: initT = {
   inputValue: {
     textValue: '',
     numberValue: '',
-  },
-  userValue: {
-    textValue: '',
-    numberValue: '',
     id: '',
     boo: false,
   },
@@ -23,14 +19,12 @@ export const inputReducer = (
 ) => {
   switch (action.type) {
     case SET_USER_INPUT_OBJ:
-      const obj = action.payload;
       return {
         ...state,
         inputValue: {
-          textValue: obj.textValue,
-          numberValue: obj.numberValue,
+          textValue: action.payload.textValue,
+          numberValue: action.payload.numberValue,
         },
-        userValue: obj,
       };
     case SUBMIT_OR_CANCEL:
       const arr = state.arrUsersValue;
@@ -41,28 +35,19 @@ export const inputReducer = (
           textValue: '',
           numberValue: '',
         },
-        userValue: {
-          textValue: '',
-          numberValue: '',
-          id: '',
-          boo: false,
-        },
+
         arrUsersValue: [...arr],
       };
     case SET_EDIT:
       const filteredElem = state.arrUsersValue.filter(
-        (e) => e.id === action.payload
+        (e) => e.id === action.payload.id
       )[0];
       const newUsersArr = state.arrUsersValue.filter(
-        (e) => e.id !== action.payload
+        (e) => e.id !== action.payload.id
       );
       return {
         ...state,
         inputValue: {
-          textValue: filteredElem.textValue,
-          numberValue: Number(filteredElem.numberValue),
-        },
-        userValue: {
           textValue: filteredElem.textValue,
           numberValue: Number(filteredElem.numberValue),
           id: `${filteredElem.textValue}_${Number(filteredElem.numberValue)}`,
