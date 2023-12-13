@@ -13,7 +13,7 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
   });
 
   const dispatch = useDispatch();
-  const { userValue, inputValue } = useSelector((state: any) => state.input);
+  const { inputValue } = useSelector((state: any) => state.input);
 
   useEffect(() => {
     if (propEditObj !== undefined) {
@@ -59,6 +59,7 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
       payload: {
         textValue: textField,
         numberValue: numberField,
+        name: name,
         id: `${textField}_${numberField}`,
       },
     });

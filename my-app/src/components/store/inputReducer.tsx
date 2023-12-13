@@ -7,6 +7,7 @@ const initialState: initT = {
   inputValue: {
     textValue: '',
     numberValue: '',
+    name: '',
     id: '',
     boo: false,
   },
@@ -22,8 +23,14 @@ export const inputReducer = (
       return {
         ...state,
         inputValue: {
-          textValue: action.payload.textValue,
-          numberValue: action.payload.numberValue,
+          textValue:
+            action.payload.name === 'text_field'
+              ? action.payload.textValue
+              : state.inputValue.textValue,
+          numberValue:
+            action.payload.name === 'number_field'
+              ? action.payload.numberValue
+              : state.inputValue.numberValue,
         },
       };
     case SUBMIT_OR_CANCEL:
@@ -52,6 +59,10 @@ export const inputReducer = (
           numberValue: Number(filteredElem.numberValue),
           id: `${filteredElem.textValue}_${Number(filteredElem.numberValue)}`,
           boo: true,
+          fff: {
+            text: filteredElem.textValue,
+            number: Number(filteredElem.numberValue),
+          },
         },
         arrUsersValue: newUsersArr,
       };

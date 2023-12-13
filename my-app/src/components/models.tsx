@@ -45,6 +45,7 @@ export type initT = {
   inputValue: {
     textValue: string;
     numberValue: string;
+    name: string;
     id: string;
     boo: boolean;
   };
