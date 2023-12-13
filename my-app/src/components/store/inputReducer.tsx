@@ -1,6 +1,6 @@
 /** @format */
 
-import { initT, payloadT } from '../models';
+import { actionsT, initT, payloadT } from '../models';
 import {
   SET_USER_INPUT_OBJ,
   SUBMIT_OR_CANCEL,
@@ -19,10 +19,7 @@ const initialState: initT = {
   arrUsersValue: [],
 };
 
-export const inputReducer = (
-  state = initialState,
-  action: { type: string; payload: payloadT }
-) => {
+export const inputReducer = (state = initialState, action: actionsT) => {
   switch (action.type) {
     case SET_USER_INPUT_OBJ:
       return {

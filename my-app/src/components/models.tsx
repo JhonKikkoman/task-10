@@ -52,6 +52,8 @@ export type initT = {
   arrUsersValue: stateInputT[];
 };
 
+export type actionsT = { type: string; payload: payloadT };
+
 export type payloadT = {
   textValue: string;
   numberValue: string;
