@@ -13,7 +13,7 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
   });
 
   const dispatch = useDispatch();
-  const { inputValue } = useSelector((state: any) => state.input);
+  const { inputValue, isActive } = useSelector((state: any) => state.input);
 
   useEffect(() => {
     if (propEditObj !== undefined) {
@@ -107,7 +107,7 @@ export function InputWidget({ propClbk, propEditObj }: propInputT) {
       <button type='submit' className='btn item__submit-btn'>
         Save
       </button>
-      {inputValue.boo && (
+      {isActive && (
         <>
           <button type='button' className='btn' onClick={() => handlerCancel()}>
             Cancel

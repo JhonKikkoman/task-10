@@ -9,8 +9,8 @@ const initialState: initT = {
     numberValue: '',
     name: '',
     id: '',
-    boo: false,
   },
+  isActive: false,
   arrUsersValue: [],
 };
 
@@ -42,7 +42,7 @@ export const inputReducer = (
           textValue: '',
           numberValue: '',
         },
-
+        isActive: false,
         arrUsersValue: [...arr],
       };
     case SET_EDIT:
@@ -58,12 +58,8 @@ export const inputReducer = (
           textValue: filteredElem.textValue,
           numberValue: Number(filteredElem.numberValue),
           id: `${filteredElem.textValue}_${Number(filteredElem.numberValue)}`,
-          boo: true,
-          fff: {
-            text: filteredElem.textValue,
-            number: Number(filteredElem.numberValue),
-          },
         },
+        isActive: true,
         arrUsersValue: newUsersArr,
       };
     default:

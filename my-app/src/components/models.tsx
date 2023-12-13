@@ -47,8 +47,8 @@ export type initT = {
     numberValue: string;
     name: string;
     id: string;
-    boo: boolean;
   };
+  isActive: boolean;
   arrUsersValue: stateInputT[];
 };
 
@@ -57,5 +57,4 @@ export type payloadT = {
   numberValue: string;
   name: string;
   id: string;
-  boo: boolean;
 };
