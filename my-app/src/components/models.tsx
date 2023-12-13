@@ -48,6 +48,11 @@ export type initT = {
     name: string;
     id: string;
   };
+  cacheObj: {
+    textValue: string;
+    numberValue: string;
+    id: string;
+  };
   isActive: boolean;
   arrUsersValue: stateInputT[];
 };

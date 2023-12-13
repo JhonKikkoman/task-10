@@ -1,9 +1,10 @@
 /** @format */
 
-import { actionsT, initT, payloadT } from '../models';
+import { actionsT, initT } from '../models';
 import {
   SET_USER_INPUT_OBJ,
-  SUBMIT_OR_CANCEL,
+  SET_CANCEL,
+  SET_SUBMIT,
   SET_EDIT,
   SET_DELETE,
 } from './action';
@@ -13,6 +14,11 @@ const initialState: initT = {
     textValue: '',
     numberValue: '',
     name: '',
+    id: '',
+  },
+  cacheObj: {
+    textValue: '',
+    numberValue: '',
     id: '',
   },
   isActive: false,
@@ -35,7 +41,7 @@ export const inputReducer = (state = initialState, action: actionsT) => {
               : state.inputValue.numberValue,
         },
       };
-    case SUBMIT_OR_CANCEL:
+    case SET_SUBMIT:
       const arr = state.arrUsersValue;
       arr.push(action.payload);
       return {
@@ -47,6 +53,18 @@ export const inputReducer = (state = initialState, action: actionsT) => {
         isActive: false,
         arrUsersValue: [...arr],
       };
+    case SET_CANCEL:
+      const prevArr = state.arrUsersValue;
+      prevArr.push(state.cacheObj);
+      return {
+        ...state,
+        inputValue: {
+          textValue: '',
+          numberValue: '',
+        },
+        isActive: false,
+        arrUsersValue: [...prevArr],
+      };
     case SET_EDIT:
       const filteredElem = state.arrUsersValue.filter(
         (e) => e.id === action.payload.id
@@ -57,6 +75,11 @@ export const inputReducer = (state = initialState, action: actionsT) => {
       return {
         ...state,
         inputValue: {
+          textValue: filteredElem.textValue,
+          numberValue: Number(filteredElem.numberValue),
+          id: `${filteredElem.textValue}_${Number(filteredElem.numberValue)}`,
+        },
+        cacheObj: {
           textValue: filteredElem.textValue,
           numberValue: Number(filteredElem.numberValue),
           id: `${filteredElem.textValue}_${Number(filteredElem.numberValue)}`,
