@@ -9,8 +9,7 @@ export function ResultWidget({ propArr, ClbkResult }: propT) {
     (state: { input: initT }) => state.input
   );
   const dispatch = useDispatch();
-  const whichOne =
-    filterInputValue.length === 0 ? arrUsersValue : cacheFilterArr;
+  const whichOne = filterInputValue === '' ? arrUsersValue : cacheFilterArr;
   return (
     <ul className='container__list'>
       {whichOne.map((e: stateInputT) => {

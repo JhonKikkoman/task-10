@@ -15,8 +15,7 @@ export function FilterWidget() {
 
   const handlerChange = ({ target }: any) => {
     const { value } = target;
-    setState(value);
-
+    // setState(value);
     const filter = arrUsersValue.filter((item) => {
       if (
         item.textValue
@@ -27,6 +26,7 @@ export function FilterWidget() {
         return item;
       }
     });
+
     dispatch({
       type: SET_FILTER,
       payload: {
