@@ -4,6 +4,7 @@ import './App.css';
 import { InputWidget } from './components/InputWidget';
 import { ResultWidget } from './components/ResultWidget';
 import { stateResT, stateU } from './components/models';
+import { FilterWidget } from './components/FilterWidget';
 
 function App() {
   const [state, setState] = useState<stateU[]>([]);
@@ -30,8 +31,11 @@ function App() {
   };
   return (
     <>
-      <InputWidget propClbk={inputClbk} propEditObj={stateRes} />
-      <ResultWidget propArr={state} ClbkResult={resultClbk} />
+      <div className='content_container'>
+        <InputWidget propClbk={inputClbk} propEditObj={stateRes} />
+        <FilterWidget />
+        <ResultWidget propArr={state} ClbkResult={resultClbk} />
+      </div>
     </>
   );
 }

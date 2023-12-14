@@ -7,6 +7,7 @@ import {
   SET_SUBMIT,
   SET_EDIT,
   SET_DELETE,
+  SET_FILTER,
 } from './action';
 
 const initialState: initT = {
@@ -23,6 +24,8 @@ const initialState: initT = {
   },
   isActive: false,
   arrUsersValue: [],
+  filterInputValue: '',
+  cacheFilterArr: [],
 };
 
 export const inputReducer = (state = initialState, action: actionsT) => {
@@ -92,6 +95,12 @@ export const inputReducer = (state = initialState, action: actionsT) => {
         (e) => e.id !== action.payload.id
       );
       return { ...state, arrUsersValue: deletedElemArr };
+    case SET_FILTER:
+      return {
+        ...state,
+        filterInputValue: action.payload.str,
+        cacheFilterArr: action.payload.filter,
+      };
     default:
       return state;
   }

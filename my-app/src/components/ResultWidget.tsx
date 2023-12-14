@@ -5,14 +5,15 @@ import { initT, propT, stateInputT } from './models';
 import { SET_DELETE, SET_EDIT } from './store/action';
 
 export function ResultWidget({ propArr, ClbkResult }: propT) {
-  const { arrUsersValue } = useSelector(
+  const { arrUsersValue, filterInputValue, cacheFilterArr } = useSelector(
     (state: { input: initT }) => state.input
   );
   const dispatch = useDispatch();
-
+  const whichOne =
+    filterInputValue.length === 0 ? arrUsersValue : cacheFilterArr;
   return (
     <ul className='container__list'>
-      {arrUsersValue.map((e: stateInputT) => {
+      {whichOne.map((e: stateInputT) => {
         return (
           <li key={e.id} className='list__item'>
             <span className='item item_info'>{e.textValue}</span>

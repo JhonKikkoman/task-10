@@ -6,10 +6,13 @@
   box-sizing: border-box;
 }
 
+.content_container {
+  margin: 5px;
+}
+
 .container__form {
   display: flex;
   gap: 1px;
-  margin: 5px;
 }
 
 .btn {
@@ -34,4 +37,8 @@
 .item__btn.btn-close {
   width: 40px;
   font-size: 20px;
+}
+
+input.btn.filter_input {
+  margin-top: 5px;
 }
