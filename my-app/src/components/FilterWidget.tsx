@@ -9,40 +9,31 @@ export function FilterWidget() {
   const [state, setState] = useState('');
 
   const dispatch = useDispatch();
-  const { arrUsersValue, filterInputValue } = useSelector(
+  const { filterInputValue } = useSelector(
     (state: { input: initT }) => state.input
   );
 
   const handlerChange = ({ target }: any) => {
     const { value } = target;
-    // setState(value);
-    const filter = arrUsersValue.filter((item) => {
-      if (
-        item.textValue
-          .toLowerCase()
-          .trim()
-          .includes(filterInputValue.toLowerCase().trim())
-      ) {
-        return item;
-      }
-    });
-
+    // setState(value)
     dispatch({
       type: SET_FILTER,
       payload: {
-        filter: filter,
         str: value,
       },
     });
   };
   return (
     <div className='container__filter'>
+      <label htmlFor='filter__field' className='btn filter__label'>
+        Filter by:
+      </label>
       <input
         type='text'
         name='filter__field'
         onChange={handlerChange}
         value={filterInputValue}
-        placeholder='Фильтровать по:'
+        id='filter__field'
         className='btn filter_input'
       />
     </div>

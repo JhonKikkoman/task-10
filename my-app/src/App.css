@@ -34,11 +34,16 @@
   cursor: pointer;
 }
 
-.item__btn.btn-close {
+.item__btn.btn-close,
+.filter__label {
   width: 40px;
   font-size: 20px;
 }
 
 input.btn.filter_input {
   margin-top: 5px;
+}
+
+.container__filter {
+  margin-bottom: 5px;
 }

@@ -96,11 +96,20 @@ export const inputReducer = (state = initialState, action: actionsT) => {
       );
       return { ...state, arrUsersValue: deletedElemArr };
     case SET_FILTER:
-      console.log(action.payload);
+      const filter = state.arrUsersValue.filter((item) => {
+        if (
+          item.textValue
+            .toLowerCase()
+            .trim()
+            .includes(action.payload.str.toLowerCase().trim())
+        ) {
+          return item;
+        }
+      });
       return {
         ...state,
         filterInputValue: action.payload.str,
-        cacheFilterArr: action.payload.filter,
+        cacheFilterArr: filter,
       };
     default:
       return state;

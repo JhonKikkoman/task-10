@@ -67,5 +67,4 @@ export type payloadT = {
   name: string;
   id: string;
   str: string;
-  filter: stateInputT[];
 };
